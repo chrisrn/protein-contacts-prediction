@@ -47,7 +47,7 @@ python enrich_emberddings_pairwise.py --emb_dir embeddings/cache_pca --pdb_dir p
 ```
 Here we use only 50 residues per protein because the computations are heavy on CPU.
 
-After exporting all the different types of embeddings we can run the data_exploration notebook which shows some statistics of our data to understand them better.
+After exporting all the different types of embeddings we can run the [data_exploration](https://github.com/chrisrn/protein-contacts-prediction/blob/master/src/data_exploration.ipynb) notebook which shows some statistics of our data to understand them better.
 
 ## Training - testing
 The model architecture is a simple feedforward neural network using 2 FC layers (CPU-friendly model). With a hidden dim of 16 we have almost 2.5k parameters to train. So we run the training for the 3 types of embeddings to compare results. First experiment is on the 64-dim pca embeddings:
@@ -65,5 +65,5 @@ And third experiment is on 72-dim enriched embeddings with structural features u
 python train_from_embeddings.py --pdb_dir protein_data --emb_dir embeddings/enriched_embeddings_pairwise --max_residues 50 --hidden_dim 16 --epochs 10 --results_dir results/runs_pairwise
 ```
 We use a CPU-friendly number of residues to keep from each protein sequence and we can see the results after 10 epochs on the respective result directories (matplotlib plots, tensorboard, csv with metrics, model weights).
-Finally we can see some predicted vs ground-truth contact maps in this notebeook using the model trained on pairwise2 embeddings which is the best one.
+Finally we can see some predicted vs ground-truth contact maps in [visualize_predicted_maps](https://github.com/chrisrn/protein-contacts-prediction/blob/master/src/visualize_predicted_maps.ipynb) notebeook using the model trained on pairwise2 embeddings which is the best one.
 
